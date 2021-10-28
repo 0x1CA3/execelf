@@ -19,8 +19,7 @@ int file_check(char *filename) {
 }
 
 static void file_execution(size_t size, char *elf, char **f_file, char **envp) {
-	int des;	
-	des = memfd_create("", FD_CLOEXEC);	
+	int des = memfd_create("", FD_CLOEXEC);	
 	write(des, elf, size);
 	sprintf(e_elf, "/proc/self/fd/%u", des);
 	execve(e_elf, f_file, envp);
